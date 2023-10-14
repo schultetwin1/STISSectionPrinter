@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "STIS Section Printer",
+    "description": "Make it easier to print the full section of a service manual for your Subuaru from STIS Website",
+    "version": "0.1",
+    "icons": {
+        "48": "images/icon48x48.png",
+        "128": "images/icon128x128.png"
+    },
+    "background": {
+        "service_worker": "scripts/service_worker.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "js": ["scripts/print_button.js"],
+            "matches": [
+                "https://techinfo.subaru.com/stis/doc/htmlDiagnostics/*",
+                "https://techinfo.subaru.com/stis/diag/*"
+            ]
+        },
+        {
+            "js": ["scripts/build_manual.js"],
+            "matches": [
+                "https://techinfo.subaru.com/stis/doc/htmlDiagnostics/*",
+                "https://techinfo.subaru.com/stis/diag/*"
+            ]
+        }
+    ]
+  }
