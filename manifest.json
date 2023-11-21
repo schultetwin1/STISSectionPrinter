@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "STIS Section Printer",
     "description": "Make it easier to print the full section of a service manual for your Subaru from STIS Website",
-    "version": "0.1",
+    "version": "0.2",
     "icons": {
         "48": "images/icon48x48.png",
         "128": "images/icon128x128.png"
