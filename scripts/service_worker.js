@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         const title = request.title;
         const firstid = request.chapterids.shift();
-        const url = `https://techinfo.subaru.com/stis/doc/htmlDiagnostics/19_FORESTER_G8240BE_V42/contents/data/print/${firstid}.html?print=wait`;
+        const url = request.url + `/data/print/${firstid}.html?print=wait`;
 
         chrome.tabs.create({
             url: url

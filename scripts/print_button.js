@@ -16,7 +16,8 @@ if (print_button) {
             const chapterids = parse_chapterids_from_tree_menu(ol);
             const chapter_title = document.getElementById("titlesisec").innerText;
             const pubno = document.getElementById("pubno").innerText;
-            chrome.runtime.sendMessage({title: `${pubno}:${chapter_title}`, chapterids: chapterids});
+            const url = removeLastPathSegmentFromURL(window.location.href);
+            chrome.runtime.sendMessage({url: url, title: `${pubno}:${chapter_title}`, chapterids: chapterids});
         } else {
             alert("Please select an item to print.");
         }
@@ -77,4 +78,24 @@ function getChapterIds(sections) {
     }
 
     return ids;
+}
+
+function removeLastPathSegmentFromURL(urlString) {
+    // Parse the URL
+    const url = new URL(urlString);
+
+    // Split the pathname into segments
+    const pathSegments = url.pathname.split('/');
+
+    // Remove the last segment
+    // Note: Checking length to avoid removing the first '/' for domain only URLs
+    if (pathSegments.length > 1) {
+        pathSegments.pop();
+    }
+
+    // Rejoin the remaining segments
+    url.pathname = pathSegments.join('/');
+
+    // Return the updated URL as a string
+    return url.toString();
 }
